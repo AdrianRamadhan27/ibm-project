@@ -24,9 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
         <head>
-        
-        <link rel="icon" href="/logo_suarahati.png" />
-      </head>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="icon" href="/Logo.png" />
+        </head>
       
       <body
         className={`${firaSans.variable}`}

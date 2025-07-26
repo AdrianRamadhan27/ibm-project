@@ -62,11 +62,11 @@ const containerRef = useRef<HTMLDivElement | null>(null);
   };
 
   return (
-    <div className="flex justify-center scroll-anchor" data-aos="fade-up">
+    <div className="flex justify-center" data-aos="fade-up">
       <div className="relative transition-all duration-100">
         <div
           ref={containerRef}
-          className="relative overflow-x-scroll w-[1080px] gap-0 bg-none rounded-lg flex px-[360px] py-10"
+          className="relative overflow-x-scroll w-screen lg:w-[1080px] gap-0 bg-none rounded-lg flex px-[360px] py-10"
           id="scroller-card container"
           onScroll={handleScroll}
         >

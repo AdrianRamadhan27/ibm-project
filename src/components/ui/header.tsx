@@ -7,7 +7,7 @@ export default function Header() {
       <header className="flex items-center justify-between px-10 py-1 bg-white border-b border-gray-100 sticky top-0 z-50 shadow-xl">
         <Link className="flex items-center gap-2" href="/">
           <Image src="/Logo.png" alt="SuaraHati Logo" width={30} height={30} className="w-full h-auto" />
-          <span className="text-4xl font-bold text-black">
+          <span className="text-3xl lg:text-4xl font-bold text-black">
             Suara<span className="text-[#ec616a]">Hati</span>
           </span>
         </Link>

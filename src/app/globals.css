@@ -137,6 +137,13 @@
   }
 }
 
+@layer base {
+  html, body {
+    @apply overflow-x-hidden;
+  }
+}
+
+
 body::before, 
 body::after {
   content: '';
@@ -149,8 +156,8 @@ body::after {
 body::before {
   background: var(--third-glow);
   border-radius: 50%;
-  width: 50vw;
-  height: 50vw;
+  width: 100vw;
+  height: 100vw;
   margin-left: -200px;
   filter: blur(90px);  
   top: 20%;
@@ -158,7 +165,7 @@ body::before {
   animation: animateBefore 7s cubic-bezier(0.47, 0, 0.745, 0.715) infinite;
 }
 
-body::after {
+body::after { 
   background: var(--secondary-glow);
   border-radius: 50%;
   width: 500px;
@@ -196,37 +203,6 @@ body::after {
     transform: translateX(0);
   }
 }
-
-/* 
-.hover-underline {
-  position: relative;
-  display: inline-block;
-}
-
-.hover-underline::after,
-.hover-underline::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(to right, #ff0000, #00ffff);
-  bottom: -5px;
-  left: 0;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.4s ease-out;
-}
-
-.hover-underline::before {
-  top: -5px;
-  transform-origin: left;
-}
-
-.hover-underline:hover::after,
-.hover-underline:hover::before {
-  transform: scaleX(1);
-} */
-
 
 
 

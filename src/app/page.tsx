@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { PenTool, MessageCircle, Brain, Facebook, Instagram, Twitter, Linkedin, Globe, LogIn } from "lucide-react"
+import { PenTool, MessageCircle, Brain } from "lucide-react"
 import Image from "next/image"
 import Scroller from "@/components/ui/scroller"
 import Link from "next/link"
@@ -13,24 +13,24 @@ export default function SuaraHatiLanding() {
 
       {/* Man Section */}
       <section className="relative overflow-hidden">
-        <div className="container mx-auto px-30 py-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h1 className="text-6xl lg:text-5xl font-bold text-black leading-tight" data-aos="fade-up">
+        <div className="container mx-auto px-10 lg:px-30 py-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center text-center lg:text-left">
+            <div className="space-y-6 order-2 lg:order-1">
+              <h1 className="text-3xl lg:text-6xl font-bold text-black leading-tight" data-aos="fade-up">
                 Suarakan Isi <span className="text-[#ec616a]">Hatimu</span>
                 <br />
                 Demi Kebaikan
                 <br />
                 <span className="text-[#ec616a]">Hidupmu</span>
               </h1>
-              <p className="text-gray-700 text-lg" data-aos="fade-up">
+              <p className="text-gray-700 text-md lg:text-lg" data-aos="fade-up">
                 Buat Jurnal Rutin atau Tanyakan Keluh Kesahmu
                 <br />
                 dan Dapatkan Saran dan Solusi dari AI secara Instan!
               </p>
-              <Button className="glow-on-hover text-xl" data-aos="fade-right"><Link href="/auth">Mulai Suarakan Hati</Link></Button>
+              <Button className="glow-on-hover text-xl " data-aos="fade-right"><Link href="/auth">Mulai Suarakan Hati</Link></Button>
             </div>
-            <div className="relative">
+            <div className="relative order-1 lg:order-2">
               <div className="relative mask-fade">
                 <Image data-aos="zoom-in-up" src="/man confused 2.png" alt="Man thinking" width={500} height={300} className="w-full h-auto"/>
               </div>
