@@ -1,10 +1,10 @@
-import { Facebook, Instagram, Twitter, Linkedin, Globe } from "lucide-react";
+import { FaFacebook, FaInstagram, FaXTwitter, FaLinkedin } from 'react-icons/fa6';
 
 const socials = [
-  { icon: <Facebook />, title: "Facebook", from: "#3b5998", to: "#8b9dc3" },
-  { icon: <Instagram />, title: "Instagram", from: "#f09433", to: "#e6683c" },
-  { icon: <Twitter />, title: "Twitter", from: "#56CCF2", to: "#2F80ED" },
-  { icon: <Linkedin />, title: "LinkedIn", from: "#0077b5", to: "#00c6ff" },
+  { icon: <FaFacebook />, title: "Facebook", from: "#3b5998", to: "#8b9dc3" },
+  { icon: <FaInstagram />, title: "Instagram", from: "#f09433", to: "#e6683c" },
+  { icon: <FaXTwitter />, title: "Twitter", from: "#56CCF2", to: "#2F80ED" },
+  { icon: <FaLinkedin />, title: "LinkedIn", from: "#0077b5", to: "#00c6ff" },
 ];
 
 export default function Footer() {

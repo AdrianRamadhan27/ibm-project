@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { PenTool, MessageCircle, Brain, Facebook, Instagram, Twitter, Linkedin, Globe, LogIn } from "lucide-react"
 import Image from "next/image"
 import Scroller from "@/components/ui/scroller"
+import Link from "next/link"
 export default function SuaraHatiLanding() {
   return (
     <main className="main">
@@ -27,7 +28,7 @@ export default function SuaraHatiLanding() {
                 <br />
                 dan Dapatkan Saran dan Solusi dari AI secara Instan!
               </p>
-              <Button className="glow-on-hover text-xl" data-aos="fade-right"><a href="/auth">Mulai Suarakan Hati</a></Button>
+              <Button className="glow-on-hover text-xl" data-aos="fade-right"><Link href="/auth">Mulai Suarakan Hati</Link></Button>
             </div>
             <div className="relative">
               <div className="relative mask-fade">
@@ -107,7 +108,7 @@ export default function SuaraHatiLanding() {
           <h2 className="text-3xl font-bold text-black mb-8" data-aos="fade-up">
             Tertarik Gunakan Suara<span className="text-[#ec616a]">Hati</span>?
           </h2>
-          <Button className="glow-on-hover text-lg" data-aos="zoom-in"><a href="/auth">Mulai Suarakan Hati</a></Button>
+          <Button className="glow-on-hover text-lg" data-aos="zoom-in"><Link href="/auth">Mulai Suarakan Hati</Link></Button>
         </div>
       </section>
 
