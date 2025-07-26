@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fira_Sans } from "next/font/google";
 import "./globals.css";
+import AOSInitializer from '@/components/AOSInitializer';
+import Header from "@/components/ui/header";
+import Footer from "@/components/ui/footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const firaSans = Fira_Sans({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-fira-sans',
 });
 
 export const metadata: Metadata = {
@@ -28,11 +27,18 @@ export default function RootLayout({
         
         <link rel="icon" href="/logo_suarahati.png" />
       </head>
+      
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${firaSans.variable}`}
       >
+        <AOSInitializer />
+        <Header/>
+
         {children}
+        <Footer/>
       </body>
     </html>
   );
 }
+
+
