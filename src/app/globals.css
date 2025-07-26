@@ -264,6 +264,17 @@ body::after {
   }
 }
 
+.btn-style2 {
+  border-color: black;
+  color: black;
+  transition: all 0.5s;
+  &:hover {
+    box-shadow: inset 0 0 0 2em #cb5959;
+    border-color: #cb5959;
+    color: #fff;
+  }
+}
+
 .glow-on-hover {
     width: 220px;
     height: 50px;
