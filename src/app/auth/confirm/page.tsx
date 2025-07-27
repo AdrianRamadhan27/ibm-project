@@ -1,10 +1,17 @@
 'use client'
 
-import { useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 export default function ConfirmEmailPage() {
-  const searchParams = useSearchParams()
-  const email = searchParams.get('email')
+  const [email, setEmail] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href)
+      const emailParam = url.searchParams.get('email')
+      setEmail(emailParam)
+    }
+  }, [])
 
   return (
     <main className="main">
