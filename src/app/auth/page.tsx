@@ -45,8 +45,12 @@ export default function AuthPage() {
           router.push('/journal')
         }
       }
-    } catch (err: any) {
-      setError(err.message || 'Terjadi kesalahan.')
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message)
+      } else {
+        setError('Terjadi kesalahan.')
+      }
     } finally {
       setLoading(false)
     }

@@ -2,6 +2,7 @@
 import React, { useState, useRef } from "react";
 import { testimonials } from "@/data/testimonials";
 import { Star } from "lucide-react";
+import Image from "next/image";
 // Define a type for the testimonial structure
 type Testimonial = {
   image: string;
@@ -85,7 +86,7 @@ const containerRef = useRef<HTMLDivElement | null>(null);
                 aria-label="scroller-card"
               >
                 <div className="flex flex-row mb-2 w-full mt-2 gap-4">
-                  <img
+                  <Image
                     src={testimonial.image}
                     className={`${
                       index === middleCard
@@ -93,6 +94,8 @@ const containerRef = useRef<HTMLDivElement | null>(null);
                         : "h-[60px] w-[60px]"
                     } rounded-full object-cover`}
                     alt={testimonial.testName}
+                    width="60"
+                    height="60"
                   />
 
                   <div>

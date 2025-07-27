@@ -1,42 +1,42 @@
 export const testimonials = [
   {
-    testName: "Ayu Kartika",
+    testName: "Joshua",
     testCompany: "Jakarta",
-    title: "Mahasiswa",
+    title: "CEO",
     body: "SuaraHati membantu saya menenangkan pikiran dan menemukan pola pikir yang lebih positif. Rasanya seperti punya terapis pribadi.",
     image:
-      "https://images.unsplash.com/photo-1607746882042-944635dfe10e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.0.3&q=80&w=200",
+      "/testimony/Josh.jpg",
   },
   {
-    testName: "Rizky Darmawan",
-    testCompany: "Bandung",
+    testName: "Amadeo",
+    testCompany: "Surabaya",
     title: "Freelancer",
     body: "Fitur refleksi dan analisis dari GPT-nya sangat membantu. Saya merasa lebih sadar akan emosi saya dan bisa mengelolanya lebih baik.",
     image:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.0.3&q=80&w=200",
+      "/testimony/Deo.jpg",
   },
   {
-    testName: "Melati Sari",
+    testName: "Nadia",
     testCompany: "Yogyakarta",
-    title: "Ibu Rumah Tangga",
+    title: "Mahasiswa",
     body: "Dengan harga yang sangat terjangkau, SuaraHati memberikan dampak besar bagi kesehatan mental saya. Sangat direkomendasikan!",
     image:
-      "https://images.unsplash.com/photo-1552058544-f2b08422138a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.0.3&q=80&w=200",
+      "/testimony/Nadia.jpg",
   },
   {
-    testName: "Daniel Halim",
-    testCompany: "Surabaya",
+    testName: "Luthfi",
+    testCompany: "Tangerang",
     title: "Software Engineer",
     body: "Suka banget sama fitur export journaling-nya. Bisa saya simpan untuk refleksi bulanan atau diskusi dengan psikolog saya.",
     image:
-      "https://images.unsplash.com/photo-1603415526960-f7e0328f0c9c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.0.3&q=80&w=200",
+      "/testimony/Luthfi.jpg",
   },
   {
-    testName: "Intan Rahma",
+    testName: "Gwen",
     testCompany: "Depok",
-    title: "Pelajar",
+    title: "Atlet",
     body: "Kadang saya sulit bicara ke orang lain, tapi lewat SuaraHati saya bisa mengekspresikan perasaan saya tanpa takut dihakimi.",
     image:
-      "https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.0.3&q=80&w=200",
+      "/testimony/Gwen.jpg",
   },
 ];
