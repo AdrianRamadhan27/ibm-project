@@ -3,9 +3,11 @@
 import { useState } from 'react'
 import supabase from '@/lib/supabaseClient'
 import { useRouter } from 'next/navigation'
+import Image from "next/image";
 
 export default function AuthPage() {
   const router = useRouter()
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isSignUp, setIsSignUp] = useState(false)
@@ -16,17 +18,38 @@ export default function AuthPage() {
     setLoading(true)
     setError(null)
 
-    const { error } = isSignUp
-      ? await supabase.auth.signUp({ email, password })
-      : await supabase.auth.signInWithPassword({ email, password })
+    try {
+      if (isSignUp) {
+        const { data, error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: {
+              full_name: name,
+            },
+            emailRedirectTo: `${window.location.origin}/`, // optional: Supabase will redirect here after user verifies email
+          },
+        })
 
-    if (error) {
-      setError(error.message)
-    } else {
-      router.push('/journal')
+        if (error) {
+          setError(error.message)
+        } else {
+          router.push(`/auth/confirm?email=${encodeURIComponent(email)}`)
+        }
+      } else {
+        const { error } = await supabase.auth.signInWithPassword({ email, password })
+
+        if (error) {
+          setError(error.message)
+        } else {
+          router.push('/journal')
+        }
+      }
+    } catch (err: any) {
+      setError(err.message || 'Terjadi kesalahan.')
+    } finally {
+      setLoading(false)
     }
-
-    setLoading(false)
   }
 
   const handleGoogleLogin = async () => {
@@ -47,51 +70,83 @@ export default function AuthPage() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-4">
-      <h1 className="text-2xl font-bold mb-4">
-        {isSignUp ? 'Sign Up' : 'Sign In'}
-      </h1>
+    <main className="main">
+      <div className="mainDiv min-h-screen font-sans">
+        <section className="relative overflow-hidden">
+          <div className="container py-20 items-center">
+            <div className="flex flex-col items-center text-center w-[300px] md:w-[500px] p-8 m-auto bg-white rounded-lg shadow-2xl gap-3">
+              <h1 className="text-2xl font-bold mb-4">
+                {isSignUp ? 'Daftar Akun' : 'Masuk Akun'}
+              </h1>
 
-      <input
-        type="email"
-        placeholder="Email"
-        className="border px-3 py-2 mb-2 rounded w-full max-w-sm"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+              {isSignUp && (
+                <input
+                  type="text"
+                  placeholder="Nama Lengkap"
+                  className="border px-3 py-2 mb-2 rounded w-full max-w-md"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  data-aos="fade-up"
+                />
+              )}
 
-      <input
-        type="password"
-        placeholder="Password"
-        className="border px-3 py-2 mb-2 rounded w-full max-w-sm"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+              <input
+                type="email"
+                placeholder="Email"
+                className="border px-3 py-2 mb-2 rounded w-full max-w-md"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                data-aos="fade-up"
+              />
 
-      {error && <p className="text-red-500">{error}</p>}
+              <input
+                type="password"
+                placeholder="Password"
+                className="border px-3 py-2 mb-2 rounded w-full max-w-md"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                data-aos="fade-up"
+              />
 
-      <button
-        onClick={handleAuth}
-        disabled={loading}
-        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded w-full max-w-sm mb-2"
-      >
-        {loading ? 'Loading...' : isSignUp ? 'Create Account' : 'Login'}
-      </button>
+              {error && <p className="text-red-500">{error}</p>}
 
-      <button
-        onClick={handleGoogleLogin}
-        disabled={loading}
-        className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded w-full max-w-sm mb-2"
-      >
-        {loading ? 'Redirecting...' : 'Continue with Google'}
-      </button>
+              <button
+                onClick={handleAuth}
+                disabled={loading}
+                className="bg-[#ec616a] hover:bg-[#d5919bfb] text-white px-4 py-2 rounded w-full max-w-md mb-2 shadow-md hover:cursor-pointer font-bold"
+                data-aos="fade-up"
+              >
+                {loading ? 'Loading...' : isSignUp ? 'Daftar' : 'Masuk'}
+              </button>
 
-      <button
-        onClick={() => setIsSignUp(!isSignUp)}
-        className="text-blue-600 underline text-sm"
-      >
-        {isSignUp ? 'Already have an account? Login' : 'No account? Sign Up'}
-      </button>
-    </div>
+              <button
+                onClick={handleGoogleLogin}
+                disabled={loading}
+                className="bg-white hover:bg-gray-400 text-black px-4 py-2 rounded w-full max-w-md mb-2 flex items-center justify-center gap-3 shadow-md hover:cursor-pointer font-bold"
+                data-aos="fade-up"
+              >
+                <Image src="/Google.png" alt="Google logo" width={30} height={30} />
+                
+                {loading ? 'Redirecting...' : 'Lanjut dengan Google'}
+              </button>
+
+              <div className="text-sm">
+                {isSignUp ? (
+                  <>
+                    <span className="text-black">Sudah punya akun? </span>
+                    <button className="text-blue-600 underline hover:cursor-pointer font-bold" onClick={() => setIsSignUp(false)}>Masuk</button>
+                  </>
+                ) : (
+                  <>
+                    <span className="text-black">Belum punya akun? </span>
+                    <button className="text-blue-600 underline hover:cursor-pointer font-bold" onClick={() => setIsSignUp(true)}>Daftar</button>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
   )
 }

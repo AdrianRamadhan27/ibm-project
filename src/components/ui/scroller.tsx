@@ -12,7 +12,7 @@ type Testimonial = {
 };
 
 const Scroller: React.FC = () => {
-const [middleCard, setMiddleCard] = useState<number>(1); // always center
+const [middleCard, setMiddleCard] = useState<number>(0); // always center
 const containerRef = useRef<HTMLDivElement | null>(null);
 
   const handleCircleClick = (index: number) => {
