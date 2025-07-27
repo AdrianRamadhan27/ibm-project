@@ -137,17 +137,17 @@
   }
 }
 
-@layer base {
-  html, body {
+/* @layer base {
+  .main {
     @apply overflow-x-hidden;
   }
-}
+} */
 
 
 body::before, 
 body::after {
   content: '';
-  position: fixed; /* <-- change from absolute */
+  position: fixed; 
   z-index: -1;
   opacity: 0.8;
   pointer-events: none; /* optional: ensures background doesn’t interfere with clicks */

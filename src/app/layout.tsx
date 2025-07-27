@@ -22,9 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-color-mode="light">
         <head>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <link rel="icon" href="/Logo.png" />
         </head>

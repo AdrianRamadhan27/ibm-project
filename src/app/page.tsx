@@ -6,7 +6,7 @@ import Scroller from "@/components/ui/scroller"
 import Link from "next/link"
 export default function SuaraHatiLanding() {
   return (
-    <main className="main">
+    <main className="main overflow-x-hidden">
     <div className="mainDiv min-h-screen font-sans">
       
       
