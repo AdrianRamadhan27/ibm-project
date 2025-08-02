@@ -1,15 +1,13 @@
 "use client"
 
 import supabase from "@/lib/supabaseClient"
-import Link from "next/link"
-import { format } from "date-fns"
-import { id } from "date-fns/locale/id"
 import { useEffect, useState } from "react"
 import JournalCard from "../ui/journalCard"
+import { User } from '@supabase/supabase-js'
 
 
-export default function Dashboard({ user }: { user: any }) {
-  const [journals, setJournals] = useState<any[]>([])
+export default function Dashboard({ user }: { user: User }) {
+  const [journals, setJournals] = useState<Journal[]>([])
   const [loading, setLoading] = useState(true)
   const [refreshFlag, setRefreshFlag] = useState(false)
   useEffect(() => {
@@ -19,7 +17,7 @@ export default function Dashboard({ user }: { user: any }) {
 
       const { data: journalsData, error: journalsError } = await supabase
         .from("journals")
-        .select("id, title, created_at, updated_at, content, analysis")
+        .select("id, title, created_at, updated_at, content, analysis, pinned")
         .eq("user_id", user.id)
         .order("created_at", { ascending: false })
         .limit(4)

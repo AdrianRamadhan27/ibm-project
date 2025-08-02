@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Dialog } from "@headlessui/react"
 import { X } from "lucide-react"
 import Groq from "groq-sdk";
@@ -11,11 +11,11 @@ import ReactMarkdown from 'react-markdown';
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY! })
 
-export default function AIAnalysisButton({ journal }: { journal: any }) {
+export default function AIAnalysisButton({ journal }: { journal: Journal | null }) {
   const [isOpen, setIsOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const [analysis, setAnalysis] = useState(journal.analysis)
-  const [lastAnalysed, setLastAnalysed] = useState(journal.last_analysed)
+  const [analysis, setAnalysis] = useState(journal?.analysis || null)
+  const [lastAnalysed, setLastAnalysed] = useState(journal?.last_analysed || null)
 
   const handleAnalyze = async () => {
     setIsLoading(true)
@@ -23,9 +23,9 @@ export default function AIAnalysisButton({ journal }: { journal: any }) {
     const prompt = `
 Saya ingin Anda bertindak sebagai analis keseharian berdasarkan catatan jurnal pribadi seseorang. Berikut ini adalah isi jurnalnya:
 
-"""${journal.content}"""
+"""${journal?.content}"""
 
-${journal.metrics ? `Berikut ini adalah metrik numerik yang diisi pengguna: ${Object.entries(journal.metrics).map(([k, v]) => `${k}: ${v}`).join(", ")}` : "Tidak ada metrik yang diisi."}
+${journal?.metrics ? `Berikut ini adalah metrik numerik yang diisi pengguna: ${Object.entries(journal.metrics).map(([k, v]) => `${k}: ${v}`).join(", ")}` : "Tidak ada metrik yang diisi."}
 
 Berikan analisis ringkas dalam 1-2 paragraf. Utamakan format poin-poin yang berisi insight dan saran singkat dari jurnal ini. Gunakan bahasa yang suportif dan empatik.
 `
@@ -38,7 +38,7 @@ Berikan analisis ringkas dalam 1-2 paragraf. Utamakan format poin-poin yang beri
         ],
       })
 
-      const response = chatCompletion.choices[0]?.message?.content
+      const response = chatCompletion.choices[0]?.message?.content!
 
       // update ke Supabase
       const { error } = await supabase
@@ -47,7 +47,7 @@ Berikan analisis ringkas dalam 1-2 paragraf. Utamakan format poin-poin yang beri
           analysis: response,
           last_analysed: new Date().toISOString(),
         })
-        .eq("id", journal.id)
+        .eq("id", journal?.id)
 
       if (!error) {
         setAnalysis(response)
@@ -60,7 +60,7 @@ Berikan analisis ringkas dalam 1-2 paragraf. Utamakan format poin-poin yang beri
     setIsLoading(false)
   }
 
-  if (!journal.id) return null
+  if (!journal?.id) return null
 
   return (
     <>

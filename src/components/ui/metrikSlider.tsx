@@ -2,8 +2,8 @@ import ToggleSwitch from "./toggleSwitch";
 export default function MetrikSlider({ label, valueKey, state, setState }: {
   label: string,
   valueKey: 'fun' | 'productivity' | 'stress',
-  state: any,
-  setState: any
+  state: Record<string, Metric>,
+  setState:  React.Dispatch<React.SetStateAction<Record<string, Metric>>>
 }) {
   const enabled = state[valueKey].enabled
   const value = state[valueKey].value
@@ -15,7 +15,7 @@ export default function MetrikSlider({ label, valueKey, state, setState }: {
         <ToggleSwitch
         enabled={enabled}
         onToggle={() =>
-            setState((prev: any) => ({
+            setState((prev) => ({
             ...prev,
             [valueKey]: { ...prev[valueKey], enabled: !prev[valueKey].enabled }
             }))
@@ -30,7 +30,7 @@ export default function MetrikSlider({ label, valueKey, state, setState }: {
         value={value}
         disabled={!enabled}
         onChange={(e) =>
-          setState((prev: any) => ({
+          setState((prev) => ({
             ...prev,
             [valueKey]: { ...prev[valueKey], value: parseInt(e.target.value) }
           }))

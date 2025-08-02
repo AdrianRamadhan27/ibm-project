@@ -3,19 +3,10 @@ import React, { useEffect, useState } from 'react'
 import supabase from '@/lib/supabaseClient'
 import { useRouter } from 'next/navigation'
 import { PenTool } from "lucide-react"; // pakai lucide-react untuk ikon edit
-import journalTemplate from '@/data/journalTemplate'
 import Link from 'next/link'
 import JournalCard from '@/components/ui/journalCard';
 // Dynamic import untuk menghindari SSR issues
-type Journal = {
-  id: string
-  title: string
-  content: string
-  created_at: string
-  updated_at: string
-  analysis: object | null
-  pinned: boolean
-}
+
 export default function JournalPage() {
   const [userId, setUserId] = useState<string | null>(null)
   const [pinnedJournals, setPinnedJournals] = useState<Journal[]>([])
@@ -24,12 +15,6 @@ export default function JournalPage() {
   
   const router = useRouter()
 
-  const formattedDate = new Intl.DateTimeFormat('id-ID', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  }).format(new Date());
 
 
 

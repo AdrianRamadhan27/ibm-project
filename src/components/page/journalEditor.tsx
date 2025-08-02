@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import React, { useEffect, useState } from 'react'
 import supabase from '@/lib/supabaseClient'
 import { useRouter } from 'next/navigation'
-import { Pencil, Save, Sparkles } from "lucide-react";
+import { Pencil, Save } from "lucide-react";
 import ToggleSwitch from '@/components/ui/toggleSwitch';
 import MetrikSlider from '@/components/ui/metrikSlider';
 import journalTemplate from '@/data/journalTemplate';
@@ -13,11 +13,8 @@ import AIAnalysisButton from '@/components/ui/analysisButton'
 // Dynamic import untuk menghindari SSR issues
 const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false })
 type OnChange = (value?: string, event?: React.ChangeEvent<HTMLTextAreaElement>, state?: ContextStore) => void;
-type Metric = {
-  enabled: boolean;
-  value: number;
-};
-export default function JournalEditor({ initialJournal = null }: { initialJournal?: any }) {
+
+export default function JournalEditor({ initialJournal = null }: { initialJournal?: Journal | null }) {
     const [markdown, setMarkdown] = useState(initialJournal?.content || '')
     const [previewMode, setPreviewMode] = useState<'edit' | 'live'>('live')
     const [useTemplate, setUseTemplate] = useState(false)
@@ -36,16 +33,7 @@ export default function JournalEditor({ initialJournal = null }: { initialJourna
     )
     const now = new Date().toISOString()
 
-    const [savedJournalData, setSavedJournalData] = useState(initialJournal || {
-      user_id: userId,
-      title,
-      content: markdown,
-      created_at: now,
-      updated_at: now,
-      metrics: metrics,
-      analysis: null,
-      last_analysed: null,
-    })
+    const [savedJournalData, setSavedJournalData] = useState(initialJournal || null)
 
     function mergeTemplate(userText: string, template: string): string {
         // Gantikan placeholder {ISI_JURNAL} dengan tulisan pengguna.

@@ -9,7 +9,7 @@ import { BsPin, BsPinFill, BsEye, BsTrash } from "react-icons/bs";
 
 import supabase from '@/lib/supabaseClient'
 export default function JournalCard({ journal, onUpdated }: {
-  journal: any,
+  journal: Journal,
   onUpdated: () => void
 }) {
     const [pinned, setPinned] = useState(journal.pinned) // local state agar berubah langsung
