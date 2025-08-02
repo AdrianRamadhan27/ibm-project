@@ -38,7 +38,7 @@ Berikan analisis ringkas dalam 1-2 paragraf. Utamakan format poin-poin yang beri
         ],
       })
 
-      const response = chatCompletion.choices[0]?.message?.content!
+      const response = chatCompletion.choices[0]?.message?.content
 
       // update ke Supabase
       const { error } = await supabase
