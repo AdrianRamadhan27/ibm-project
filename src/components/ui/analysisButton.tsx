@@ -3,13 +3,11 @@
 import { useState } from "react"
 import { Dialog } from "@headlessui/react"
 import { X } from "lucide-react"
-import Groq from "groq-sdk";
 import { format } from "date-fns"
 import { id } from "date-fns/locale"
 import supabase from "@/lib/supabaseClient";
 import ReactMarkdown from 'react-markdown';
-
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY! })
+import groq from "@/lib/groq"
 
 export default function AIAnalysisButton({ journal }: { journal: Journal | null }) {
   const [isOpen, setIsOpen] = useState(false)
