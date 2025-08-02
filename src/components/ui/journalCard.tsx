@@ -47,7 +47,7 @@ export default function JournalCard({ journal, onUpdated }: {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      {hover && (
+      {hover ? (
         <div className="absolute top-2 right-2 flex gap-2 z-10">
           <button
             className="text-blue-600 hover:text-blue-800 hover:cursor-pointer"
@@ -71,13 +71,23 @@ export default function JournalCard({ journal, onUpdated }: {
             <BsTrash size={16} />
           </button>
         </div>
-      )}
+      ) :
+        <div className="absolute top-2 right-2 flex gap-2 z-10">
+          <button
+            className="text-blue-600 hover:text-blue-800 hover:cursor-pointer"
+            title="Pin"
+            onClick={() => handlePin(journal.id)}
+          >
+            {pinned && <BsPinFill size={16} /> }
+          </button>
+        </div>
+      }
 
       <div>
         <h2 className="text-lg font-semibold mb-2">{journal.title}</h2>
-        <p className="text-sm text-gray-500 mb-1">
+        {/* <p className="text-sm text-gray-500 mb-1">
           Dibuat: {formatDate(journal.created_at)}
-        </p>
+        </p> */}
         <p className="text-sm text-gray-500 mb-3">
           Terakhir diubah: {formatDate(journal.updated_at)}
         </p>

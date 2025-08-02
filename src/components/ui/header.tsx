@@ -73,7 +73,7 @@ export default function Header() {
         <nav className="hidden md:flex items-center gap-8 text-xl relative">
           <Link href="/" className="text-gray-700 font-bold hover-underline">Home</Link>
           <Link href="/journal" className="text-gray-700 font-bold hover-underline">Jurnal</Link>
-          <Link href="#" className="text-gray-700 font-bold hover-underline">Konsultasi</Link>
+          <Link href="/consult" className="text-gray-700 font-bold hover-underline">Konsultasi</Link>
 
           {user ? (
             <div className="relative" ref={dropdownRef}>
@@ -144,7 +144,7 @@ export default function Header() {
           >
             <Link href="/" className="py-2 text-gray-700 font-bold border-b" onClick={toggleMenu}>Home</Link>
             <Link href="/journal" className="py-2 text-gray-700 font-bold border-b" onClick={toggleMenu}>Jurnal</Link>
-            <Link href="#" className="py-2 text-gray-700 font-bold border-b" onClick={toggleMenu}>Konsultasi</Link>
+            <Link href="/consult" className="py-2 text-gray-700 font-bold border-b" onClick={toggleMenu}>Konsultasi</Link>
 
             {user ? (
               <>

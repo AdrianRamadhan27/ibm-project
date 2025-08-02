@@ -63,7 +63,7 @@ Berikan analisis ringkas dalam 1-2 paragraf. Utamakan format poin-poin yang beri
   return (
     <>
       <button
-        className="fixed bottom-6 right-6 bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-700 z-50"
+        className="fixed bottom-6 right-6 bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-700 z-50 hover:cursor-pointer"
         onClick={() => setIsOpen(true)}
       >
         {analysis ? "Lihat Analisis" : "Analisis dengan AI"}
@@ -71,16 +71,16 @@ Berikan analisis ringkas dalam 1-2 paragraf. Utamakan format poin-poin yang beri
 
       <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="fixed z-50 inset-0 overflow-y-auto">
         <div className="flex items-center justify-center min-h-screen px-4">
-          <Dialog.Panel className="relative bg-white rounded-2xl shadow-xl max-w-2xl w-full p-6">
+          <Dialog.Panel className="relative bg-[#f8b5b5] rounded-2xl shadow-xl max-w-2xl w-full p-6">
             <button
-              className="absolute top-2 right-2 text-gray-400 hover:text-black"
+              className="absolute top-2 right-2 text-gray-400 hover:text-black hover:cursor-pointer"
               onClick={() => setIsOpen(false)}
             >
               <X />
             </button>
-            <h1 className="text-2xl font-bold mb-2">Analisis Harimu dengan Suarahati.AI</h1>
+            <h1 className="text-2xl font-bold mb-2">Analisis Jurnalmu dengan Suarahati.AI</h1>
             <p className="text-sm text-gray-500 mb-4">
-              Last analysed: {lastAnalysed ? format(new Date(lastAnalysed), "PPpp", { locale: id }) : "Belum pernah"}
+              Terakhir dianalisis: {lastAnalysed ? format(new Date(lastAnalysed), "PPpp", { locale: id }) : "Belum pernah"}
             </p>
 
             {isLoading ? (
@@ -94,10 +94,10 @@ Berikan analisis ringkas dalam 1-2 paragraf. Utamakan format poin-poin yang beri
             <div className="flex justify-end mt-4">
               <button
                 onClick={handleAnalyze}
-                className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+                className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 hover:cursor-pointer"
                 disabled={isLoading}
               >
-                Analisa Ulang
+                {analysis ? "Analisa Ulang" : "Analisa" }
               </button>
             </div>
           </Dialog.Panel>

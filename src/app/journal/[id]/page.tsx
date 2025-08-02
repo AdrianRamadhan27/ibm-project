@@ -6,47 +6,46 @@ import { use, useEffect, useState } from 'react'
 export default function JournalDetailPage(props: { params: Promise<{ id: string }> }) {
     const { id } = use(props.params)
     const [journal, setJournal] = useState(null)
-    const [message, setMessage] = useState('')
-
+    const [notFound, setNotFound] = useState(false)
     const fetchJournal = async (uid: string, id: string) => {
         const { data: journal, error } = await supabase
-        .from('journals')
-        .select('*')
-        .eq('user_id', uid)
-        .eq('id', id)
-        .single()
+            .from('journals')
+            .select('*')
+            .eq('user_id', uid)
+            .eq('id', id)
+            .single()
 
-        if (error) {
-            console.error('Gagal mengambil jurnal:', error.message)
+        if (error || !journal) {
+            console.warn('Jurnal tidak ditemukan atau bukan milik user:', error?.message)
+            setNotFound(true)
         } else {
-            // setMessage("Success Get Journal")
-
-            // setMessage(journal.title)
             setJournal(journal)
         }
     }
-
-  useEffect(() => {
-    const getUser = async () => {
-      const {
-        data: { user },
-        error,
-      } = await supabase.auth.getUser()
-
-      if (error || !user) {
-        // router.push('/auth')
-        setMessage("No User")
-      } else {
-        // setMessage("Success Auth")
-        fetchJournal(user.id, id)
-      }
-    }
-
-    getUser()
-
-
     
-  }, [])
+
+    useEffect(() => {
+        const getUser = async () => {
+        const {
+            data: { user },
+            error,
+        } = await supabase.auth.getUser()
+
+        if (error || !user) {
+            setNotFound(true)
+        } else {
+            fetchJournal(user.id, id)
+        }
+        }
+
+        getUser()
+    }, [])
+
+    if (notFound) {
+        return <div className=" text-center p-20 h-screen">
+            <h1 className='text-red-600 text-3xl font-bold'>Anda tidak dapat mengakses halaman ini</h1>
+            </div>
+    }
 
 
 
