@@ -49,7 +49,8 @@ export default function Header() {
     if (!confirmLogout) return;
 
     await supabase.auth.signOut();
-    router.refresh(); // refresh header
+    router.refresh()
+    window.location.reload(); 
   };
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
